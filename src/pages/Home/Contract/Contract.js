@@ -12,14 +12,14 @@ const Contract = () => {
             <div className="mx-auto w-96 my-8">
 
 
-                <input type="text" placeholder="Email" class="input block mb-4 input-bordered input-xs w-full max-w-xs" />
+                <input type="text" placeholder="Email" className="input block mb-4 input-bordered input-xs w-full max-w-xs" />
 
-                <input type="text" placeholder="Message" class="input block mb-4 input-bordered input-sm w-full max-w-xs" />
+                <input type="text" placeholder="Message" className="input block mb-4 input-bordered input-sm w-full max-w-xs" />
 
 
-                <input type="text" placeholder="Your Message details" class="input block mb-4  input-bordered input-lg w-full max-w-xs" />
+                <input type="text" placeholder="Your Message details" className="input block mb-4  input-bordered input-lg w-full max-w-xs" />
 
-                <button type='button' class=" btn bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Get Started</button>
+                <button type='button' className=" btn bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Get Started</button>
             </div>
         </div>
     );

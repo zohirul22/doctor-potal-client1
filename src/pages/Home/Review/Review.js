@@ -4,11 +4,11 @@ const Review = ({ testimonial }) => {
     return (
         <div className="card  bg-base-100 shadow-xl ">
             <div className="">
-                <div class="">
-                    <div class="card-body">
+                <div className="">
+                    <div className="card-body">
 
                         <p>{testimonial.description}</p>
-                        <div class="card-actions justify-end">
+                        <div className="card-actions justify-end">
 
                         </div>
                     </div>
@@ -16,8 +16,8 @@ const Review = ({ testimonial }) => {
             </div>
             <div className="flex items-center p-8">
 
-                <div class="avatar">
-                    <div class="w-24 rounded-full ring ring-success ring-offset-base-100 mr-4">
+                <div className="avatar">
+                    <div className="w-24 rounded-full ring ring-success ring-offset-base-100 mr-4">
                        <img src={testimonial.img} alt="" />
                     </div>
                 </div>
