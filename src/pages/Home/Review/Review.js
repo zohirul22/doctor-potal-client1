@@ -18,7 +18,7 @@ const Review = ({ testimonial }) => {
 
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-success ring-offset-base-100 mr-4">
-                        <img src="https://api.lorem.space/image/face?hash=3174" />
+                       <img src={testimonial.img} alt="" />
                     </div>
                 </div>
 
