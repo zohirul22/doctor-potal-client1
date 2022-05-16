@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Home/Loading/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -14,6 +14,22 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+//    requireauth 
+let navigate = useNavigate();
+let location = useLocation();
+let from = location.state?.from?.pathname || "/";
+//    requireauth 
+
+
+useEffect( ()=>{
+    if(googleUser || user){
+        //    requireauth 
+      navigate(from, { replace: true });
+      //    requireauth 
+    }
+} ,[googleUser , user, from , navigate])
+
 
 let signInError;
 
@@ -27,6 +43,7 @@ let signInError;
 
 
 
+
     const onSubmit = data => {
         console.log(data)
         signInWithEmailAndPassword(data.email, data.password)
@@ -35,16 +52,16 @@ let signInError;
 
     return (
         <div className='flex justify-center align-center mt-20'>
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="text-center text-2xl font-semibold">Login</h2>
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="text-center text-2xl font-semibold">Login</h2>
 
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* email field */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
                                 {...register("email", {
@@ -57,20 +74,20 @@ let signInError;
                                         message: 'provider a valid email'
                                     }
                                 })}
-                                type="email" placeholder="Yours Email" class="input input-bordered w-full max-w-xs" />
-                            <label class="label">
-                                {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                type="email" placeholder="Yours Email" className="input input-bordered w-full max-w-xs" />
+                            <label className="label">
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
 
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
 
                             </label>
                         </div>
                         {/* email field */}
 
                         {/* password field */}
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Password</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
 
                             </label>
                             <input
@@ -84,11 +101,11 @@ let signInError;
                                         message: 'provider 6 characters password'
                                     }
                                 })}
-                                type="password" placeholder="password" class="input input-bordered w-full max-w-xs" />
-                            <label class="label">
-                                {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                type="password" placeholder="password" className="input input-bordered w-full max-w-xs" />
+                            <label className="label">
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
 
-                                {errors.password?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
 
                             </label>
                         </div>
@@ -102,11 +119,11 @@ let signInError;
                     {/* react hooks from */}
 
 
-                    <div class="divider">OR</div>
+                    <div className="divider">OR</div>
 
                     <button
                         onClick={() => signInWithGoogle()}
-                        class="btn btn-outline btn-accent text-black">SignIn With Google</button>
+                        className="btn btn-outline btn-accent text-black">SignIn With Google</button>
 
 
                 </div>
